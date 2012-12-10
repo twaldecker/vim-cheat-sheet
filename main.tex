@@ -1,0 +1,135 @@
+\documentclass[10pt,DIV=50,landscape,pagesize,parskip=off]{scrartcl}
+
+% Autor: Thomas Waldecker <thomas.waldecker@gmail.com>
+% This work is licensed under the Creative Commons Attribution-ShareAlike 3.0
+% Unported License. To view a copy of this license, visit
+% http://creativecommons.org/licenses/by-sa/3.0/
+
+\usepackage[english]{babel}
+\usepackage{xltxtra}
+\usepackage{blindtext}
+\usepackage{multicol}
+\usepackage{listings}
+\usepackage{framed}
+\usepackage{url}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[colorlinks=true,urlcolor=ForestGreen]{hyperref}
+\usepackage{tikz}
+
+
+\setlength{\parindent}{0pt}
+
+\newcommand\co[1]{\texttt{#1}}
+\newcommand\coe[2]{\co{#1} = #2}
+
+\setmainfont[Mapping=tex-text]{Myriad Pro}
+\setmonofont{Source Code Pro}
+\setkomafont{sectioning}{\fontspec[Color=NavyBlue]{Myriad Pro}}
+
+\begin{document}
+\section*{{\Huge \fontspec{Myriad Pro Bold}VIM Cheat Sheet}}
+\begin{multicols}{3}
+\section{Movement}
+\begin{tikzpicture}
+\node at (0,0) {h};
+\node at (0.3,0.3) {k};
+\node at (0.3,-0.3) {j};
+\node at (0.6,0) {l};
+\end{tikzpicture}\\
+\coe{w}{Word forward}\\
+\coe{e}{End of current word}\\
+\coe{b}{Word backward}\\
+\coe{)(}{Sentences forward backward}\\
+\coe{\}\{}{Paragraphs forward backward}
+
+\section{Scrolling}
+\coe{CTRL-E}{Scroll window down}\\
+\coe{CTRL-Y}{Scroll window up}\\
+\coe{zz}{Scroll that cursor is in middle of screen}\\
+\coe{zt}{Scroll that cursor is on top of the screen}\\
+\coe{zb}{Scroll that cursor is on the bottom of the screen}
+
+\section{Inserting and replacing text}
+\coe{i / a}{Insert before / after cursor}\\
+\coe{I / A}{Insert at beginning / end of line}\\
+\coe{o / O}{Add and insert in line below / before}\\
+\coe{r / R}{Replace char / Replace mode}
+
+\section{Help}
+\coe{:help command}{Split screen help}\\
+Browse the help:\\
+\coe{CTRL-J}{Follow Link}\\
+\coe{CTRL-T or CTRL-O}{Go back}
+
+\section{File opening and editing}
+\coe{:e filename}{Open Filename in new Buffer}\\
+\coe{gf}{goto file, open file under cursor}
+
+\section{Split screen}
+\coe{:vs[plit]}{Vertical split}\\
+\coe{:sp[lit]}{Horizontal split}\\
+\coe{CTRL-W+hjkl}{change active viewport}\\
+\coe{CTRL-W =}{same height/width of viewports}
+
+\section{Buffers}
+\coe{:buffers}{show list of buffers}\\
+\coe{:bn}{next buffer}\\
+\coe{:bp}{previous buffer}
+
+\section{Visual}
+\coe{v}{Visual mode}\\
+\coe{V}{Visual line}\\
+\coe{gv}{reselect visual selection}
+
+\section{Spell checking}
+\coe{<F12>}{toggle spell checking}\\
+\coe{]s}{next wrong word}\\
+\coe{[s}{previous wrong word}\\
+\coe{zg}{add good word to wordlist}\\
+\coe{zw}{add wrong word to wordlist}\\
+\coe{z=}{show suggestions}
+
+\section{Copy \& Paste}
+\coe{y}{yank, visual select then press y}\\
+\coe{P}{Paste before cursor}\\
+\coe{p}{paste after cursor}\\
+\coe{CTRL+<F11>}{toggle paste mode}
+
+\section{Folding}
+\coe{zo}{Open fold}\\
+\coe{zc}{Close fold}\\
+\coe{za}{Toggle fold}
+
+\section{Quickfix list}
+\coe{:cl[ist]}{Quickfix list}\\
+\coe{:cn}{Next Quickfix}\\
+\coe{:cp}{Previous Quickfix}
+
+\section{Search \& Replace}
+\coe{/expr}{Search current file with expr forward}\\
+\coe{?expr}{Search current file with expr backward}\\
+\coe{n / N}{Move to next / previous match}\\
+\coe{:vimgrep expr file}{Grep in Vim, uses Quickfix list for matches}\\
+\coe{s/expr/rep/cgil}{Substitute expr with rep\\Options: Confirm, G=all in line, i=ignore case, I=Don't ignore case}\\
+Backreferences: \lstinline|\0| whole match, \lstinline|\1| first group in \lstinline|\(\)|\\
+Character Classes:\\
+\coe{.}{any character except new line}\\
+\lstinline|\s \S| = Whitespace character; non-whitespace char\\
+\lstinline|\d \x \o| = digit; hex digit; octal digit\\
+\lstinline|\p \w| = Printable char; word char\\
+\lstinline|\a \l \u| = Alphabetic char; lowercase char; uppercase char\\
+Quantifiers:\\
+\lstinline|*| = 0 or more\\
+\lstinline|\+| = 1 or more\\
+\lstinline|\=| = 0 or 1\\
+\lstinline|\{n,m} \{n} \{,m} \{n,}| = matches from n to m; exactly n, 0 to m, n or more
+
+\begin{framed}
+{\small Autor: Thomas Waldecker\\
+<\url{mailto:thomas.waldecker@gmail.com}>\\ This work is licensed under the
+Creative Commons Attribution-ShareAlike 3.0 Unported License. To view a copy of
+this license, visit \url{http://creativecommons.org/licenses/by-sa/3.0/}.}
+\end{framed}
+
+\end{multicols}
+\end{document}
