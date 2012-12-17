@@ -43,7 +43,7 @@
 \coe{w / b}{Word forward / backward}\\
 \coe{e}{End of current word}\\
 \coe{) / (}{Sentences forward / backward}\\
-\coe{\} / \{}{Paragraphs forward backward}
+\coe{\} / \{}{Paragraphs forward / backward}
 
 \section{Scrolling}
 \coe{<C-E> / <C-Y>}{Scroll window down / up}\\
@@ -52,7 +52,7 @@
 \coe{zb}{Scroll that cursor is on the bottom of the screen}
 
 \section{Jumping with the cursor}
-\lstinline|g; g,| older and newer position in the changelist \\
+\lstinline|g; / g,| older / newer position in the changelist \\
 \lstinline|:jumps :changes| Jumplist, Changelist\\
 \lstinline|<C-O> / <C-I>| back / forward in Jumplist
 
@@ -83,8 +83,7 @@ Browse the help:\\
 
 \section{Buffers}
 \coe{:buffers}{show list of buffers}\\
-\coe{:bn}{next buffer}\\
-\coe{:bp}{previous buffer}
+\coe{:bn / :bp}{next / previous buffer}
 
 \section{Visual}
 \coe{v}{Visual mode}\\
@@ -106,21 +105,19 @@ Browse the help:\\
 \coe{CTRL+<F11>}{toggle paste mode}
 
 \section{Folding}
-\coe{zo}{Open fold}\\
-\coe{zc}{Close fold}\\
+\coe{zo / zc}{Open / close fold}\\
 \coe{za}{Toggle fold}
 
 \section{Quickfix list}
 \coe{:cl[ist]}{Quickfix list}\\
-\coe{:cn}{Next Quickfix}\\
-\coe{:cp}{Previous Quickfix}
+\coe{:cn / :cp}{Next / previous quickfix}
 
 \section{Search \& Replace}
 \coe{/expr}{Search current file with expr forward}\\
 \coe{?expr}{Search current file with expr backward}\\
 \coe{n / N}{Move to next / previous match}\\
 \coe{:vimgrep expr file}{Grep in Vim, uses Quickfix list for matches}\\
-\coe{s/expr/rep/cgil}{Substitute expr with rep\\Options: Confirm, G=all in line, i=ignore case, I=Don't ignore case}\\
+\coe{s/expr/rep/cgiI}{Substitute expr with rep\\Options: Confirm, G=all in line, case (i=ignore, I=Don't ignore)}\\
 Backreferences: \lstinline|\0| whole match, \lstinline|\1| first group in \lstinline|\(\)|\\
 Character Classes:\\
 \coe{.}{any character except new line}\\
