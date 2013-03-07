@@ -4,7 +4,7 @@ This is my personal VIM Cheat Sheet.
 
 ## Download
 
-You can download the PDF here: [PDF Download](https://github.com/twaldecker/vim-cheat-sheet/raw/master/main.pdf)
+You can download the PDF here: [PDF Download](https://github.com/twaldecker/vim-cheat-sheet/raw/vim/main.pdf)
 
 ## Build
 
