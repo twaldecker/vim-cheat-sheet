@@ -2,6 +2,8 @@
 
 This is my personal VIM Cheat Sheet.
 
+![preview](./main.png)
+
 ## Download
 
 You can download the PDF here: [PDF Download](https://github.com/twaldecker/vim-cheat-sheet/raw/vim/main.pdf)
