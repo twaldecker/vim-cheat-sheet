@@ -8,6 +8,7 @@
 \usepackage[english]{babel}
 \usepackage{xltxtra}
 \usepackage{blindtext}
+\usepackage{tabularx}
 \usepackage{multicol}
 \usepackage{listings}
 \usepackage{framed}
@@ -16,14 +17,19 @@
 \usepackage[colorlinks=true,urlcolor=ForestGreen]{hyperref}
 \usepackage{tikz}
 
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+
 \lstset{%
   basicstyle=\ttfamily
 }
 
 \setlength{\parindent}{0pt}
 
-\newcommand\co[1]{\texttt{#1}}
-\newcommand\coe[2]{\co{#1} = #2}
+\newcommand\co[1]{\lstinline{#1}}
+\newcommand\coe[2]{\begin{tabularx}{.9\linewidth}{lR}
+#1&#2
+\end{tabularx}
+}
 
 \setmainfont[Mapping=tex-text]{Myriad Pro}
 \setmonofont{Source Code Pro}
@@ -34,107 +40,111 @@
 \section*{{\Huge \fontspec{Myriad Pro Bold}VIM Cheat Sheet}}
 \begin{multicols}{3}
 \section{Movement}
-\begin{tikzpicture}
+\coe{\begin{tikzpicture}
 \node at (0,0) {h};
 \node at (0.3,0.3) {k};
 \node at (0.3,-0.3) {j};
 \node at (0.6,0) {l};
-\end{tikzpicture}\\
-\coe{w / b}{Word forward / backward}\\
-\coe{e}{End of current word}\\
-\coe{) / (}{Sentences forward / backward}\\
-\coe{\} / \{}{Paragraphs forward / backward}
+\end{tikzpicture}}{Cursor Movement keys}
+\coe{\lstinline|w / b|}{Word forward / backward}
+\coe{\lstinline|e|}{End of current word}
+\coe{\lstinline|) / (|}{Sentences forward / backward}
+\coe{\lstinline|\} / \{|}{Paragraphs forward / backward}
 
 \section{Scrolling}
-\coe{<C-E> / <C-Y>}{Scroll window down / up}\\
-\coe{zz}{Scroll that cursor is in middle of screen}\\
-\coe{zt}{Scroll that cursor is on top of the screen}\\
-\coe{zb}{Scroll that cursor is on the bottom of the screen}
+\coe{\lstinline{<C-E>}}{Scroll window down }
+\coe{\lstinline{<C-Y>}}{Scroll window up}
+\coe{\lstinline{zt}}{Scroll that cursor is on top of the screen}
+\coe{\lstinline{zz}}{Scroll that cursor is in middle of screen}
+\coe{\lstinline{zb}}{Scroll that cursor is on the bottom of the screen}
 
 \section{Jumping with the cursor}
-\lstinline|g; / g,| older / newer position in the changelist \\
-\lstinline|:jumps :changes| Jumplist, Changelist\\
-\lstinline|<C-O> / <C-I>| back / forward in Jumplist
+\coe{\lstinline|:changes| }{ Changelist}
+\coe{\lstinline|g; / g,|}{ older / newer position in the changelist }
+\coe{\lstinline|:jumps|}{ Jumplist}
+\coe{\lstinline|<C-O> / <C-I>|}{ back / forward in Jumplist}
 
 \section{The insert mode}
-\coe{i / a}{Insert before / after cursor}\\
-\coe{I / A}{Insert at beginning / end of line}\\
-\coe{o / O}{Add and insert in line below / before}\\
-\coe{r / R}{Replace char / Replace mode} \\
-\lstinline|<C-O> command| = Quick command in insert mode \\
-\lstinline|<C-R>"| = Paste in insert mode
+\coe{\lstinline|i / a|}{Insert before / after cursor}
+\coe{\lstinline|I / A|}{Insert at beginning / end of line}
+\coe{\lstinline|o / O|}{Add and insert in line below / before}
+\coe{\lstinline|r / R|}{Replace char / Replace mode}
+\coe{\lstinline|<C-O>| command}{Quick command in insert mode}
+\coe{\lstinline|<C-R>"|}{Paste in insert mode}
 
 \section{Help}
-\coe{:help command}{Split screen help}\\
+\coe{\lstinline{:help command}}{Split screen help}
 Browse the help:\\
-\coe{CTRL-J}{Follow Link}\\
-\coe{CTRL-T or CTRL-O}{Go back}
+\coe{\lstinline|<C-J>|}{Follow Link}
+\coe{\lstinline|<C-T> or <C-O>|}{Go back}
 
 \section{File opening and editing}
-\coe{:e filename}{Open Filename in new Buffer}\\
-\coe{gf}{goto file, open file under cursor}
+\coe{\lstinline|:e filename|}{Open Filename in new Buffer}
+\coe{\lstinline|gf|}{goto file, open file under cursor}
 
 \section{Split screen}
-\coe{:vs[plit]}{Vertical split}\\
-\coe{:sp[lit]}{Horizontal split}\\
-\coe{CTRL-W+hjkl}{change active viewport}\\
-\coe{CTRL-W =}{same height/width of viewports}
+\coe{\lstinline|:vs[plit]|}{Vertical split}
+\coe{\lstinline|:sp[lit]|}{Horizontal split}
+\coe{\lstinline|<C-W> [hjkl]|}{change active viewport}
+\coe{\lstinline|<C-W> =|}{same height/width of viewports}
 
 \section{Buffers}
-\coe{:buffers}{show list of buffers}\\
-\coe{:bn / :bp}{next / previous buffer}
+\coe{\lstinline|:buffers|}{show list of buffers}
+\coe{\lstinline|:bn / :bp|}{next / previous buffer}
 
 \section{Visual}
-\coe{v}{Visual mode}\\
-\coe{V}{Visual line}\\
-\coe{gv}{reselect visual selection}
+\coe{\lstinline|v|}{Visual mode}
+\coe{\lstinline|V|}{Visual line}
+\coe{\lstinline|gv|}{reselect visual selection}
 
 \section{Spell checking}
-\coe{<F12>}{toggle spell checking}\\
-\coe{]s}{next wrong word}\\
-\coe{[s}{previous wrong word}\\
-\coe{zg}{add good word to wordlist}\\
-\coe{zw}{add wrong word to wordlist}\\
-\coe{z=}{show suggestions}
+\coe{\lstinline|<F12>|}{toggle spell checking}
+\coe{\lstinline|]s|}{next wrong word}
+\coe{\lstinline|[s|}{previous wrong word}
+\coe{\lstinline|zg|}{add good word to wordlist}
+\coe{\lstinline|zw|}{add wrong word to wordlist}
+\coe{\lstinline|z=|}{show suggestions}
 
 \section{Copy \& Paste}
-\coe{y}{yank, visual select then press y}\\
-\coe{P}{Paste before cursor}\\
-\coe{p}{paste after cursor}\\
-\lstinline|:registers| = List of paste registers\\
-\lstinline|"+ / "*| = clipboard buffer / selection buffer\\
-\coe{CTRL+<F11>}{toggle paste mode}
+\coe{\lstinline|y|}{yank, visual select then press y}
+\coe{\lstinline|P|}{Paste before cursor}
+\coe{\lstinline|p|}{paste after cursor}
+\coe{\lstinline|:registers|}{List of paste registers}
+\coe{\lstinline|"+ / "*|}{clipboard buffer / selection buffer}
+\coe{\lstinline|CTRL+<F11>|}{toggle paste mode}
 
 \section{Folding}
-\coe{zo / zc}{Open / close fold}\\
-\coe{za}{Toggle fold}
+\coe{\lstinline|zo / zc|}{Open / close fold}
+\coe{\lstinline|za|}{Toggle fold}
 
 \section{Quickfix list}
-\coe{:cl[ist]}{Quickfix list}\\
-\coe{:cn / :cp}{Next / previous quickfix}
+\coe{\lstinline|:cl[ist]|}{Quickfix list}
+\coe{\lstinline|:cn / :cp|}{Next / previous quickfix}
 
 \section{Search \& Replace}
-\coe{/expr}{Search current file with expr forward}\\
-\coe{?expr}{Search current file with expr backward}\\
-\coe{n / N}{Move to next / previous match}\\
-\coe{:vimgrep expr file}{Grep in Vim, uses Quickfix list for matches}\\
-\coe{s/expr/rep/cgiI}{Substitute expr with rep\\Options: Confirm, G=all in line, case (i=ignore, I=Don't ignore)}\\
+\coe{\lstinline|/expr|}{Search current file with expr forward}
+\coe{\lstinline|?expr|}{Search current file with expr backward}
+\coe{\lstinline|n / N|}{Move to next / previous match}
+\coe{\lstinline|:vimgrep expr file|}{Grep in Vim, uses Quickfix list for matches}
+\coe{\lstinline|s/expr/rep/cgiI|}{Substitute expr with rep Options: Confirm,
+  G=all in line, case (i=ignore, I=Don't ignore)}\\
 Backreferences: \lstinline|\0| whole match, \lstinline|\1| first group in \lstinline|\(\)|\\
 Character Classes:\\
-\coe{.}{any character except new line}\\
-\lstinline|\s \S| = Whitespace character; non-whitespace char\\
-\lstinline|\d \x \o| = digit; hex digit; octal digit\\
-\lstinline|\p \w| = Printable char; word char\\
-\lstinline|\a \l \u| = Alphabetic char; lowercase char; uppercase char\\
+\coe{\lstinline|.|}{any character except new line}
+\coe{\lstinline|\s \S|}{Whitespace character; non-whitespace char}
+\coe{\lstinline|\d \x \o|}{digit; hex digit; octal digit}
+\coe{\lstinline|\p \w|}{Printable char; word char}
+\coe{\lstinline|\a \l \u|}{Alphabetic char; lowercase char; uppercase char}
 Quantifiers:\\
-\lstinline|*| = 0 or more\\
-\lstinline|\+| = 1 or more\\
-\lstinline|\=| = 0 or 1\\
-\lstinline|\{n,m} \{n} \{,m} \{n,}| = matches from n to m; exactly n, 0 to m, n or more
+\coe{\lstinline|* / + / =|}{0 or more; 1 or more; 0 or 1}
+\coe{\lstinline|\{n,m\} \{n\} \{,m\} \{n,\}|}{matches from n to m; exactly n, 0 to
+m, n or more}
 
 \begin{framed}
 {\small Autor: Thomas Waldecker\\
-<\url{mailto:thomas.waldecker@gmail.com}>\\ This work is licensed under the
+<\url{mailto:thomas.waldecker@gmail.com}> URL:
+\url{https://github.com/twaldecker/vim-cheat-sheet}
+This work is licensed under the
 Creative Commons Attribution-ShareAlike 3.0 Unported License. To view a copy of
 this license, visit \url{http://creativecommons.org/licenses/by-sa/3.0/}.}
 \end{framed}
